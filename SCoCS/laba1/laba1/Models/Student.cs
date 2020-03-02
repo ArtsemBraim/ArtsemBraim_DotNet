@@ -12,11 +12,6 @@ namespace laba1.Models
 
         public List<Exam> Exams { get; set; }
 
-        public Student()
-        {
-            
-        }
-
         public Student(string surname, string name, string middleName, List<Exam> exams)
         {
             Surname = surname;

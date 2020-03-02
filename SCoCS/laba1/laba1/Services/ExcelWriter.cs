@@ -8,41 +8,42 @@ namespace laba1.Services
 {
     public class ExcelWriter : IFileWriter
     {
+        private const int StartRow = 1;
+        private const string WorksheetName = "Student performance";
+        private const string HeaderForGroupRating = "Average group rating";
+
+
         public void Write(IEnumerable<Student> students, string path)
         {
             using (var package = new ExcelPackage())
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Student performance");
-                var averageMarks = students.GetAverageMarkByStudents();
-                var studentEnumerator = students.GetEnumerator();
-                var markEnumerator = averageMarks.GetEnumerator();
-                int row = 1;
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(WorksheetName);
 
-                while (studentEnumerator.MoveNext() && markEnumerator.MoveNext())
+                var studentsRating = students.GetAverageMarkByStudents();
+                int row = StartRow;
+
+                foreach (var rating in studentsRating)
                 {
-                    worksheet.Cells[row, 1].Value = studentEnumerator.Current.Surname;
-                    worksheet.Cells[row, 2].Value = studentEnumerator.Current.Name;
-                    worksheet.Cells[row, 3].Value = studentEnumerator.Current.MiddleName;
-                    worksheet.Cells[row, 4].Value = markEnumerator.Current;
+                    worksheet.Cells[row, 1].Value = rating.StudentSurname;
+                    worksheet.Cells[row, 2].Value = rating.StudentName;
+                    worksheet.Cells[row, 3].Value = rating.StudentMiddleName;
+                    worksheet.Cells[row, 4].Value = rating.AverageMark;
                     row++;
                 }
 
-                var subjects = students.GetAvarageMarkBySubjects();
-                var subjectEnumerator = subjects.GetEnumerator();
+                var subjectsRating = students.GetAvarageMarkBySubjects();
 
-                while (subjectEnumerator.MoveNext())
+                foreach (var rating in subjectsRating)
                 {
-                    worksheet.Cells[row, 1].Value = subjectEnumerator.Current.subject;
-                    worksheet.Cells[row, 2].Value = subjectEnumerator.Current.mark;
+                    worksheet.Cells[row, 1].Value = rating.Subject;
+                    worksheet.Cells[row, 2].Value = rating.Mark;
                     row++;
                 }
 
-                worksheet.Cells[row, 1].Value = "Average group rating";
+                worksheet.Cells[row, 1].Value = HeaderForGroupRating;
                 worksheet.Cells[row, 2].Value = students.GetAvarageMarkByGroup();
-                row++;
 
-                var xlFile = new FileInfo(path);
-                package.SaveAs(xlFile);
+                package.SaveAs(new FileInfo(path));
             }
         }
     }

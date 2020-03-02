@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Учеба\\3 курс\\6 семестр\\SCoCS\\laba1\\laba1\\laba1.csproj": {}
+    "E:\\Учеба\\3 курс\\6 семестр\\ArtsemBraim_DotNet\\SCoCS\\laba1\\laba1\\laba1.csproj": {}
   },
   "projects": {
-    "E:\\Учеба\\3 курс\\6 семестр\\SCoCS\\laba1\\laba1\\laba1.csproj": {
+    "E:\\Учеба\\3 курс\\6 семестр\\ArtsemBraim_DotNet\\SCoCS\\laba1\\laba1\\laba1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Учеба\\3 курс\\6 семестр\\SCoCS\\laba1\\laba1\\laba1.csproj",
+        "projectUniqueName": "E:\\Учеба\\3 курс\\6 семестр\\ArtsemBraim_DotNet\\SCoCS\\laba1\\laba1\\laba1.csproj",
         "projectName": "laba1",
-        "projectPath": "E:\\Учеба\\3 курс\\6 семестр\\SCoCS\\laba1\\laba1\\laba1.csproj",
+        "projectPath": "E:\\Учеба\\3 курс\\6 семестр\\ArtsemBraim_DotNet\\SCoCS\\laba1\\laba1\\laba1.csproj",
         "packagesPath": "C:\\Users\\artes\\.nuget\\packages\\",
-        "outputPath": "E:\\Учеба\\3 курс\\6 семестр\\SCoCS\\laba1\\laba1\\obj\\",
+        "outputPath": "E:\\Учеба\\3 курс\\6 семестр\\ArtsemBraim_DotNet\\SCoCS\\laba1\\laba1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,28 +1,52 @@
 ﻿using laba1.Interfaces;
 using laba1.Models;
 using laba1.Services;
+using McMaster.Extensions.CommandLineUtils;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace laba1
 {
     class Program
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private const string ExcelFormatName = "excel";
+        private const string JsonFormatName = "json";
 
-        static void Main(string[] args)
+        [Option("-i", Description = "The path of the input file")]
+        public string InputFilePath { get; }
+
+        [Option("-o", Description = "The path of the output file")]
+        public string OutputFilePath { get; set; }
+
+        [Option("-f", Description = "The file format")]
+        public string FileFormat { get; set; }
+
+        public static void Main(string[] args) 
+            => CommandLineApplication.Execute<Program>(args);
+
+        private void OnExecute()
         {
-            string path = @"..\..\..\TestFiles\6_TestFile.csv";
             StudentCsvReader reader = new StudentCsvReader();
-            IEnumerable<Student> students = reader.Read(path);
-            IFileWriter excelWriter = new ExcelWriter();
-            IFileWriter jsonWriter = new JsonWriter();
-            if (students != null)
+            IEnumerable<Student> students = reader.Read(InputFilePath);
+            IFileWriter writer = null;
+            if (FileFormat.ToLower() == ExcelFormatName)
             {
-                excelWriter.Write(students, @"..\..\..\output.xlsx");
-                jsonWriter.Write(students, @"..\..\..\output.json");
+                writer = new ExcelWriter();
+            }
+            else if (FileFormat.ToLower() == JsonFormatName)
+            {
+                writer = new JsonWriter();
+            }
+            else
+            {
+                Console.WriteLine($"{FileFormat} is unknown format");
+            }
+
+            if (writer != null && students != null)
+            {
+                writer.Write(students, OutputFilePath);
             }
             else
             {

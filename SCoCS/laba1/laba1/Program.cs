@@ -1,10 +1,12 @@
-﻿using laba1.Interfaces;
-using laba1.Models;
-using laba1.Services;
+﻿using System;
+using System.Collections.Generic;
+
 using McMaster.Extensions.CommandLineUtils;
 using NLog;
-using System;
-using System.Collections.Generic;
+
+using laba1.Interfaces;
+using laba1.Models;
+using laba1.Services;
 
 namespace laba1
 {
@@ -28,27 +30,26 @@ namespace laba1
 
         private void OnExecute()
         {
-            StudentCsvReader reader = new StudentCsvReader();
-            IEnumerable<Student> students = reader.Read(InputFilePath);
-            IFileWriter writer = null;
-            if (FileFormat.ToLower() == ExcelFormatName)
+            try
             {
-                writer = new ExcelWriter();
+                StudentCsvReader reader = new StudentCsvReader();
+                IEnumerable<Student> students = reader.Read(InputFilePath);
+                IFileWriter writer = null;
+                switch (FileFormat.ToLower())
+                {
+                    case ExcelFormatName:
+                        writer = new ExcelWriter();
+                        break;
+                    case JsonFormatName:
+                        writer = new JsonWriter();
+                        break;
+                    default:
+                        logger.Error($"{FileFormat} is unknown format");
+                        break;
+                }
+                writer?.Write(students, OutputFilePath);
             }
-            else if (FileFormat.ToLower() == JsonFormatName)
-            {
-                writer = new JsonWriter();
-            }
-            else
-            {
-                Console.WriteLine($"{FileFormat} is unknown format");
-            }
-
-            if (writer != null && students != null)
-            {
-                writer.Write(students, OutputFilePath);
-            }
-            else
+            catch (Exception)
             {
                 logger.Error("The result not recorded");
             }

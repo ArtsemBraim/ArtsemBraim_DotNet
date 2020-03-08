@@ -1,6 +1,7 @@
-﻿using laba1.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
+using laba1.Models;
 
 namespace laba1.Services
 {
@@ -8,14 +9,15 @@ namespace laba1.Services
     {
         public static IReadOnlyCollection<StudentRating> GetAverageMarkByStudents(this IEnumerable<Student> students)
         {
-            return students.Select(s => new StudentRating
-                                        {
-                                            StudentName = s.Name,
-                                            StudentSurname = s.Surname,
-                                            StudentMiddleName = s.MiddleName,
-                                            AverageMark = s.Exams.Average(e => e.Mark)
-                                        })
-                           .ToList().AsReadOnly();
+            return students.Select(s =>
+                new StudentRating
+                {
+                    StudentName = s.Name,
+                    StudentSurname = s.Surname,
+                    StudentMiddleName = s.MiddleName,
+                    AverageMark = s.Exams.Average(e => e.Mark)
+                })
+                .ToList().AsReadOnly();
         }
 
         public static double GetAvarageMarkByGroup(this IEnumerable<Student> students)
@@ -30,16 +32,17 @@ namespace laba1.Services
 
         public static IReadOnlyCollection<SubjectRating> GetAvarageMarkBySubjects(this IEnumerable<Student> students)
         {
-            var averageMarks = new List<SubjectRating> ();
+            var averageMarks = new List<SubjectRating>();
+            var studentExams = students.SelectMany(s => s.Exams, (s, e) => new { Student = s, Exam = e });
 
             foreach (string subject in students.First().GetSubjects())
             {
-                var averageMark = (subject, students.SelectMany(s => s.Exams, (s, e) => new { Student = s, Exam = e })
+                (string subject, double mark) averageMark = (subject, studentExams
                                          .Where(x => x.Exam.Subject == subject)
                                          .Select(x => x.Exam.Mark)
                                          .Average());
 
-                var subjectRating = new SubjectRating { Mark = averageMark.Item2, Subject = averageMark.subject };
+                var subjectRating = new SubjectRating { Mark = averageMark.mark, Subject = averageMark.subject };
 
                 averageMarks.Add(subjectRating);
             }

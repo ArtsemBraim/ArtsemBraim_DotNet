@@ -9,10 +9,10 @@ namespace laba1.Models
         public string Name { get; set; }
 
         public string MiddleName { get; set; }
+        
+        public IReadOnlyCollection<Exam> Exams { get; set; }
 
-        public List<Exam> Exams { get; set; }
-
-        public Student(string surname, string name, string middleName, List<Exam> exams)
+        public Student(string surname, string name, string middleName, IReadOnlyCollection<Exam> exams)
         {
             Surname = surname;
             Name = name;

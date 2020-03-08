@@ -1,8 +1,9 @@
-﻿using laba1.Interfaces;
-using laba1.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+
+using laba1.Interfaces;
+using laba1.Models;
 
 namespace laba1.Services
 {
@@ -10,6 +11,7 @@ namespace laba1.Services
     {
         public void Write(IEnumerable<Student> students, string path)
         {
+            using var writer = new StreamWriter(path);
             var output = new OutputModel
             {
                 StudentsRating = students.GetAverageMarkByStudents(),
@@ -18,7 +20,7 @@ namespace laba1.Services
             };
 
             string jsonString = JsonSerializer.Serialize(output);
-            File.WriteAllText(path, jsonString);
+            writer.Write(jsonString);
         }
     }
 }

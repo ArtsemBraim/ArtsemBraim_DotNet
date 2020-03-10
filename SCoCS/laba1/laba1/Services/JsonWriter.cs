@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 
 using laba1.Interfaces;
@@ -19,7 +21,12 @@ namespace laba1.Services
                 SubjectsRating = students.GetAvarageMarkBySubjects()
             };
 
-            string jsonString = JsonSerializer.Serialize(output);
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
+
+            string jsonString = JsonSerializer.Serialize(output, options);
             writer.Write(jsonString);
         }
     }

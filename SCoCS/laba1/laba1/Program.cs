@@ -12,7 +12,7 @@ namespace laba1
 {
     class Program
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private const string ExcelFormatName = "excel";
         private const string JsonFormatName = "json";
 
@@ -49,9 +49,9 @@ namespace laba1
                 }
                 writer?.Write(students, OutputFilePath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                logger.Error("The result not recorded");
+                logger.Error($"The result not recorded. Inner exception: {ex.StackTrace}");
             }
         }
     }

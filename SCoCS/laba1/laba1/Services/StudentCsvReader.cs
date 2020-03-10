@@ -39,9 +39,16 @@ namespace laba1.Services
             while (csv.Read())
             {
                 var exams = new List<Exam>();
+                int headerLength = csv.Context.HeaderRecord.Length;
 
-                for (int i = IndexOfFirstMark; i < csv.Context.HeaderRecord.Length; i++)
+                for (int i = IndexOfFirstMark; i < headerLength; i++)
                 {
+                    if (headerLength != csv.Context.Record.Length)
+                    {
+                        Logger.Error("File has a different columns count");
+                        throw new FormatException();
+                    }
+
                     try
                     {
                         exams.Add(new Exam(csv.Context.HeaderRecord[i], csv.GetField<int>(i)));

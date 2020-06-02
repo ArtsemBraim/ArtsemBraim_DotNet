@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Clinic.BLL.Dto;
 using Clinic.DAL.Domain;
+using DTO = Clinic.BLL.Dto;
 
 namespace Clinic.BLL.Infrastructure
 {
@@ -8,12 +8,8 @@ namespace Clinic.BLL.Infrastructure
     {
         public MapperProfile()
         {
-            CreateMap<Doctor, DoctorDto>().ReverseMap();
-            CreateMap<Patient, PatientDto>().ReverseMap();
-            CreateMap<Schedule, ScheduleDto>().ReverseMap();
-            CreateMap<Specialization, SpecializationDto>().ReverseMap();
-            CreateMap<TimeSlot, TimeSlotDto>().ReverseMap();
-
+            CreateMap<Doctor, DTO.Doctor>().ReverseMap();
+            CreateMap<Patient, DTO.Patient>().ReverseMap();
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using Clinic.DAL.Domain;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Clinic.DAL.Interfaces
 {
     public interface IRepository<T> 
-        where T : class
+        where T : Entity
     {
         IQueryable<T> GetAll();
 

@@ -1,11 +1,8 @@
-﻿using Clinic.DAL.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Clinic.BLL.Dto
 {
-    public class DoctorDto
+    public class Doctor
     {
         public int Id { get; set; }
 
@@ -17,6 +14,8 @@ namespace Clinic.BLL.Dto
 
         public string ConsultingRoom { get; set; }
 
-        public Specialization Specialization { get; set; }
+        public List<Reception> Receptions { get; set; }
+
+        public List<Patient> Patients { get; set; }
     }
 }

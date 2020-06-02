@@ -1,11 +1,7 @@
-﻿using Clinic.DAL.Interfaces;
-
-namespace Clinic.DAL.Domain
+﻿namespace Clinic.DAL.Domain
 {
-    public class Doctor : IEntity
+    public class Doctor : Entity
     {
-        public int Id { get; set; }
-
         public string Surname { get; set; }
 
         public string Name { get; set; }
@@ -14,6 +10,6 @@ namespace Clinic.DAL.Domain
 
         public string ConsultingRoom { get; set; }
 
-        public Specialization Specialization { get; set; }
+        public string Specialization { get; set; }
     }
 }

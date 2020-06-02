@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Clinic.DAL.Domain;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Clinic.BLL.Dto
 {
-    public class PatientDto
+    public class Patient
     {
         public int Id { get; set; }
 
@@ -13,5 +12,7 @@ namespace Clinic.BLL.Dto
         public string Name { get; set; }
 
         public string MiddleName { get; set; }
+
+        public List<Reception> Receptions { get; set; }
     }
 }

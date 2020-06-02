@@ -1,18 +1,17 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Clinic.DAL.EF;
+using Clinic.DAL.Domain;
 using Clinic.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Clinic.DAL.Repositories
 {
-    public class ClinicRepository<T> : IRepository<T>
-        where T : class, IEntity
+    internal class GenericRepository<T> : IRepository<T>
+        where T : Entity
     {
-        private readonly ClinicContext _context;
+        private readonly DbContext _context;
 
-        public ClinicRepository(ClinicContext context)
+        public GenericRepository(DbContext context)
         {
             _context = context;
         }

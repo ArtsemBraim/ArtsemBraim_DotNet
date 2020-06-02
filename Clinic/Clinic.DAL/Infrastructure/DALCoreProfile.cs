@@ -11,7 +11,7 @@ namespace Clinic.DAL.Infrastructure
         public static void ConfigureDalServices(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<ClinicContext>(options => options.UseSqlServer(connectionString));
-            services.AddScoped(typeof(IRepository<>), typeof(ClinicRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
     }
 }

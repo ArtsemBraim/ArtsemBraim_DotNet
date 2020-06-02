@@ -15,10 +15,6 @@ namespace Clinic.DAL.EF
 
         public DbSet<Patient> Patients { get; set; }
 
-        public DbSet<Schedule> Schedules { get; set; }
-
-        public DbSet<Specialization> Specializations { get; set; }
-
-        public DbSet<TimeSlot> TimeSlots { get; set; }
+        public DbSet<Reception> Receptions { get; set; }
     }
 }

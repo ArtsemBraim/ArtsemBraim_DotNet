@@ -15,7 +15,5 @@ namespace Clinic.BLL.Dto
         public string ConsultingRoom { get; set; }
 
         public List<Reception> Receptions { get; set; }
-
-        public List<Patient> Patients { get; set; }
     }
 }

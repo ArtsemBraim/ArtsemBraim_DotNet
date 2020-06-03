@@ -74,7 +74,7 @@ namespace Clinic.BLL.Services
                 throw new ArgumentException($"Doctor with specified id = {doctor.Id} not exists");
             }
 
-            var updatedDoctor = await _doctorRepository.UpdateAsync(doctor);
+            var updatedDoctor = await _doctorRepository.UpdateAsync(_mapper.Map<Clinic.DAL.Domain.Doctor>(item));
 
             return _mapper.Map<Doctor>(updatedDoctor);
         }
@@ -93,7 +93,7 @@ namespace Clinic.BLL.Services
             return _mapper.Map<Doctor>(deletedDoctor);
         }
 
-        public async Task AddPatient(Reception reception)
+        public async Task AddReception(Reception reception)
         {
             var doctor = await _doctorRepository.GetAsync(reception.DoctorId);
             if (doctor is null)
@@ -124,16 +124,17 @@ namespace Clinic.BLL.Services
                 throw new ArgumentException($"Doctor with specified id = {doctor.Id} not exists");
             }
 
-            var receptions = _receptionRepository.GetAll().Where(r => r.DoctorId == id).ToList();
-            var patients = new List<Patient>();
-            foreach (var item in receptions)
+            var receptions = _receptionRepository.GetAll().Where(r => r.DoctorId == id && r.ReceptionTime > DateTime.Now).ToList();
+
+            var receptionsDto = _mapper.Map<List<Reception>>(receptions);
+            foreach (var item in receptionsDto)
             {
                 var patient = await _patientRepository.GetAsync(item.PatientId);
-                patients.Add(_mapper.Map<Patient>(patient));
+                item.Patient = _mapper.Map<Patient>(patient);
             }
 
             var doctorWithPatients = _mapper.Map<Doctor>(doctor);
-            doctorWithPatients.Patients = patients;
+            doctorWithPatients.Receptions = receptionsDto;
 
             return doctorWithPatients;
         }

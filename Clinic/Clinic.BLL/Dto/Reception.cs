@@ -8,6 +8,8 @@ namespace Clinic.BLL.Dto
 
         public int PatientId { get; set; }
 
+        public Patient Patient { get; set; }
+
         public DateTime ReceptionTime { get; set; }
     }
 }

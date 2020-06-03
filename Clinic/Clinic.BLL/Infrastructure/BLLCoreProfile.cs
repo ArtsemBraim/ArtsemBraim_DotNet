@@ -2,9 +2,6 @@
 using Clinic.BLL.Services;
 using Clinic.DAL.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Clinic.BLL.Infrastructure
 {

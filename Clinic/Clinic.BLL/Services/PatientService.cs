@@ -79,7 +79,7 @@ namespace Clinic.BLL.Services
                 throw new ArgumentException($"Doctor with specified id = {patient.Id} not exists");
             }
 
-            var updatedPatient = await _patientRepository.UpdateAsync(patient);
+            var updatedPatient = await _patientRepository.UpdateAsync(_mapper.Map<Clinic.DAL.Domain.Patient>(item));
 
             return _mapper.Map<Patient>(updatedPatient);
         }

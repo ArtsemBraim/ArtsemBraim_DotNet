@@ -10,6 +10,7 @@ namespace Clinic.BLL.Infrastructure
         {
             CreateMap<Doctor, DTO.Doctor>().ReverseMap();
             CreateMap<Patient, DTO.Patient>().ReverseMap();
+            CreateMap<Reception, DTO.Reception>().ReverseMap();
         }
     }
 }

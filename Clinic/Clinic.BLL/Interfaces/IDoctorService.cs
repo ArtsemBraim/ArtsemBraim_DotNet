@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Clinic.BLL.Interfaces
 {
-    interface IDoctorService
+    public interface IDoctorService
     {
         List<Doctor> GetAll();
 
@@ -16,7 +16,7 @@ namespace Clinic.BLL.Interfaces
 
         Task<Doctor> DeleteAsync(int id);
 
-        Task AddPatient(Reception reception);
+        Task AddReception(Reception reception);
 
         Task<Doctor> GetByIdWithPatients(int id);
     }

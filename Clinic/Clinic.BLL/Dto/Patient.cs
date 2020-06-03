@@ -1,5 +1,4 @@
-﻿using Clinic.DAL.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Clinic.BLL.Dto
 {

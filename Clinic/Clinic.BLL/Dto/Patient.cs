@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Clinic.BLL.Dto
+﻿namespace Clinic.BLL.Dto
 {
     public class Patient
     {
@@ -11,7 +9,5 @@ namespace Clinic.BLL.Dto
         public string Name { get; set; }
 
         public string MiddleName { get; set; }
-
-        public List<Reception> Receptions { get; set; }
     }
 }

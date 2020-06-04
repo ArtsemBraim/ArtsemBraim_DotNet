@@ -1,0 +1,28 @@
+﻿@model Clinic.WebUI.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Delete user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var roles = string.Join(", ", Model.RolesNames);
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>UserViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2" asp-display-name-for="Email">
+        </dt>
+        <dd class="col-sm-10" asp-display-for="Email">
+        </dd>
+        <dt class="col-sm-2" asp-display-name-for="RolesNames"></dt>
+        <dd class="col-sm-10" asp-display-for="@roles">
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteUser">
+        <input asp-for="@Model.Id" type="hidden" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

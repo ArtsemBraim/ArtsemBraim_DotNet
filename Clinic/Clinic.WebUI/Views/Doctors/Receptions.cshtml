@@ -1,0 +1,70 @@
+﻿@model DoctorViewModel
+
+@{
+    ViewData["Title"] = "Receptions";
+}
+
+<h1>Receptions</h1>
+
+<div>
+    <h4>DoctorViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ConsultingRoom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConsultingRoom)
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="AddReception" asp-route-id="@Model.Id">Add reception</a>
+    </div>
+    <h4>Patients</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Receptions.First().Patient.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Receptions.First().ReceptionTime)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Receptions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReceptionTime)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

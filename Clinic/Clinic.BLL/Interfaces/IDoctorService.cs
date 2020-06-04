@@ -14,7 +14,7 @@ namespace Clinic.BLL.Interfaces
 
         Task<Doctor> UpdateAsync(Doctor item);
 
-        Task<Doctor> DeleteAsync(int id);
+        Task DeleteAsync(int id);
 
         Task AddReception(Reception reception);
 

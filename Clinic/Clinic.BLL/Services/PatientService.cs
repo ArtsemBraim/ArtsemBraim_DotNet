@@ -32,7 +32,7 @@ namespace Clinic.BLL.Services
             return _mapper.Map<Patient>(addedPatient);
         }
 
-        public async Task<Patient> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var patient = await _patientRepository.GetAsync(id);
 
@@ -41,9 +41,7 @@ namespace Clinic.BLL.Services
                 throw new ArgumentException($"Patient with specified id = {patient.Id} not exists");
             }
 
-            var deletedPatient = await _patientRepository.DeleteAsync(patient.Id);
-
-            return _mapper.Map<Patient>(deletedPatient);
+            await _patientRepository.DeleteAsync(patient.Id);
         }
 
         public List<Patient> GetAll()

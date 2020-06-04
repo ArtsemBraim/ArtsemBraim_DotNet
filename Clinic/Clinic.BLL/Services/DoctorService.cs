@@ -79,7 +79,7 @@ namespace Clinic.BLL.Services
             return _mapper.Map<Doctor>(updatedDoctor);
         }
 
-        public async Task<Doctor> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var doctor = await _doctorRepository.GetAsync(id);
 
@@ -88,9 +88,7 @@ namespace Clinic.BLL.Services
                 throw new ArgumentException($"Doctor with specified id = {doctor.Id} not exists");
             }
 
-            var deletedDoctor = await _doctorRepository.DeleteAsync(doctor.Id);
-
-            return _mapper.Map<Doctor>(deletedDoctor);
+            await _doctorRepository.DeleteAsync(doctor.Id);
         }
 
         public async Task AddReception(Reception reception)

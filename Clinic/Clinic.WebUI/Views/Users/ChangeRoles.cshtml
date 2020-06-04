@@ -1,0 +1,29 @@
+﻿@model Clinic.WebUI.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Change roles";
+}
+
+<h1>Change roles</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeRoles">
+            <input asp-for="@Model.Id" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <select asp-for="RolesNames" class="form-control" asp-items="@Model.Roles"></select>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

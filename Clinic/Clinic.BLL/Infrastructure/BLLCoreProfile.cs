@@ -12,6 +12,7 @@ namespace Clinic.BLL.Infrastructure
             services.ConfigureDalServices(connectionString);
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IPatientService, PatientService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

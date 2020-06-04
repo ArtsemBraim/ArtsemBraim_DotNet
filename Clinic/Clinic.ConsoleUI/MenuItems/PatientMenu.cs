@@ -125,6 +125,9 @@ namespace Clinic.ConsoleUI.MenuItems
                 Console.Clear();
             } while (option != 0);
 
+            var creationProcess = _patientService.UpdateAsync(selectedPatient);
+
+            Task.WaitAll(creationProcess);
             Console.WriteLine("Данные пациента успешно изменены");
 
             Console.ReadKey();
